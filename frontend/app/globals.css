@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom PromptGen color palette as specified in design */
+:root {
+  --promptgen-deep-blue-gray: #222c36;
+  --promptgen-light-gray: #e2e8f0;
+  --promptgen-teal: #20b2aa;
+  --promptgen-green: #38a169;
+  --promptgen-white: #f4f8fb;
+  --promptgen-slate: #5a6872;
+}
+
+/* Custom PromptGen utility classes */
+.promptgen-bg {
+  background-color: var(--promptgen-deep-blue-gray);
+}
+
+.promptgen-card {
+  background-color: var(--promptgen-light-gray);
+}
+
+.promptgen-teal {
+  background-color: var(--promptgen-teal);
+}
+
+.promptgen-green {
+  background-color: var(--promptgen-green);
+}
+
+.promptgen-text-slate {
+  color: var(--promptgen-slate);
+}
