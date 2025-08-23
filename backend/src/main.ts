@@ -8,6 +8,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3001', 
+      'http://localhost:3002', // Frontend port
       'http://localhost:3000',
       'https://prompt-gen-flame.vercel.app', // Your Vercel frontend domain
       process.env.CORS_ORIGIN // Allow environment variable override
