@@ -38,7 +38,7 @@ export default function PromptGenPage() {
 
     try {
       // Call the real backend API
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://prompt-gen-backend-qwpj.onrender.com';
       const response = await fetch(`${API_URL}/ai/generate-prompt`, {
         method: 'POST',
         headers: {
@@ -48,7 +48,9 @@ export default function PromptGenPage() {
       })
 
       if (!response.ok) {
-        throw new Error('Failed to generate prompt')
+        const errorText = await response.text();
+        console.error('Response not ok:', response.status, response.statusText, errorText);
+        throw new Error(`Failed to generate prompt: ${response.status} ${response.statusText}`);
       }
 
       const result = await response.json()
