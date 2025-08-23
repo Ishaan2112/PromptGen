@@ -44,6 +44,7 @@ export default function PromptGenPage() {
       console.log('🌐 Making API request to:', fullUrl);
       console.log('📤 Request payload:', { userInput: userMessage.content });
       console.log('🔧 Environment API_URL:', process.env.NEXT_PUBLIC_API_URL);
+      console.log('🔧 Fallback API_URL:', 'https://promptgen-backend-qwpj.onrender.com');
       
       const response = await fetch(fullUrl, {
         method: 'POST',
@@ -66,6 +67,11 @@ export default function PromptGenPage() {
       const result = await response.json()
       console.log('✅ Response data:', result);
       
+      if (!result.data || !result.data.prompt) {
+        console.error('❌ Invalid response format:', result);
+        throw new Error('Invalid response format from API');
+      }
+      
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: "ai",
@@ -76,11 +82,17 @@ export default function PromptGenPage() {
       setMessages((prev) => [...prev, aiMessage])
     } catch (error) {
       console.error('💥 Error generating prompt:', error)
+      console.error('💥 Error details:', {
+        name: error.name,
+        message: error.message,
+        stack: error.stack
+      });
+      
       // Fallback to local generation if API fails
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: "ai",
-        content: generatePromptResponse(userMessage.content),
+        content: `[API Error] ${error.message} - Using fallback: ${generatePromptResponse(userMessage.content)}`,
         timestamp: new Date(),
       }
       setMessages((prev) => [...prev, aiMessage])
