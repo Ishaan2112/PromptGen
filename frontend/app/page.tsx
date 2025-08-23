@@ -38,7 +38,8 @@ export default function PromptGenPage() {
 
     try {
       // Call the real backend API
-      const response = await fetch('http://localhost:3000/ai/generate-prompt', {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
+      const response = await fetch(`${API_URL}/ai/generate-prompt`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

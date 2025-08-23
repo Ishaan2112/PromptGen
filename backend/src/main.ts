@@ -6,7 +6,13 @@ async function bootstrap() {
   
   // Enable CORS for frontend
   app.enableCors({
-    origin: ['http://localhost:3001', 'http://localhost:3000'],
+    origin: [
+      'http://localhost:3001', 
+      'http://localhost:3000',
+      'https://your-frontend-domain.vercel.app', // Update this with your actual frontend domain
+      'https://your-frontend-domain.netlify.app', // Update this with your actual frontend domain
+      process.env.CORS_ORIGIN // Allow environment variable override
+    ].filter(Boolean), // Remove undefined values
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
