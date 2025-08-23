@@ -38,8 +38,14 @@ export default function PromptGenPage() {
 
     try {
       // Call the real backend API
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://prompt-gen-backend-qwpj.onrender.com';
-      const response = await fetch(`${API_URL}/ai/generate-prompt`, {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://promptgen-backend-qwpj.onrender.com';
+      const fullUrl = `${API_URL}/ai/generate-prompt`;
+      
+      console.log('🌐 Making API request to:', fullUrl);
+      console.log('📤 Request payload:', { userInput: userMessage.content });
+      console.log('🔧 Environment API_URL:', process.env.NEXT_PUBLIC_API_URL);
+      
+      const response = await fetch(fullUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -47,13 +53,18 @@ export default function PromptGenPage() {
         body: JSON.stringify({ userInput: userMessage.content }),
       })
 
+      console.log('📥 Response status:', response.status);
+      console.log('📥 Response statusText:', response.statusText);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+
       if (!response.ok) {
         const errorText = await response.text();
-        console.error('Response not ok:', response.status, response.statusText, errorText);
+        console.error('❌ Response not ok:', response.status, response.statusText, errorText);
         throw new Error(`Failed to generate prompt: ${response.status} ${response.statusText}`);
       }
 
       const result = await response.json()
+      console.log('✅ Response data:', result);
       
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
@@ -64,7 +75,7 @@ export default function PromptGenPage() {
       
       setMessages((prev) => [...prev, aiMessage])
     } catch (error) {
-      console.error('Error generating prompt:', error)
+      console.error('💥 Error generating prompt:', error)
       // Fallback to local generation if API fails
       const aiMessage: Message = {
         id: (Date.now() + 1).toString(),
