@@ -38,13 +38,11 @@ export default function PromptGenPage() {
 
     try {
       // Call the real backend API
-      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://promptgen-backend-qwpj.onrender.com';
+      const API_URL = 'http://localhost:3000';
       const fullUrl = `${API_URL}/ai/generate-prompt`;
       
       console.log('🌐 Making API request to:', fullUrl);
       console.log('📤 Request payload:', { userInput: userMessage.content });
-      console.log('🔧 Environment API_URL:', process.env.NEXT_PUBLIC_API_URL);
-      console.log('🔧 Fallback API_URL:', 'https://promptgen-backend-qwpj.onrender.com');
       
       const response = await fetch(fullUrl, {
         method: 'POST',

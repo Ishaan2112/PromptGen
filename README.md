@@ -1,4 +1,4 @@
-cle# PromptGen Tool
+# PromptGen Tool
 
 A comprehensive prompt generation and management system built with Next.js frontend and NestJS backend, featuring Google Gemini AI integration for intelligent prompt enhancement and generation.
 
@@ -65,8 +65,6 @@ cd promptgen-tool
 ```bash
 cd frontend
 pnpm install
-cp env.example .env.local
-# Edit .env.local with your configuration
 pnpm dev
 ```
 
@@ -74,28 +72,26 @@ pnpm dev
 ```bash
 cd backend
 pnpm install
-cp env.example .env
-# Edit .env with your Gemini API key
 pnpm run start:dev
 ```
 
 ### 4. Access the Application
 - **Frontend**: http://localhost:3000
-- **Backend API**: http://localhost:3001
-- **API Documentation**: http://localhost:3001/api
+- **Backend API**: http://localhost:3000
+- **API Documentation**: http://localhost:3000/api
 
 ## 🔧 Configuration
 
 ### Frontend Environment Variables
 ```env
-NEXT_PUBLIC_API_URL=http://localhost:3001
+NEXT_PUBLIC_API_URL=http://localhost:3000
 NEXT_PUBLIC_APP_NAME=PromptGen Tool
 ```
 
 ### Backend Environment Variables
 ```env
 NODE_ENV=development
-PORT=3001
+PORT=3000
 GEMINI_API_KEY=your_gemini_api_key_here
 CORS_ORIGIN=http://localhost:3000
 THROTTLE_TTL=60
@@ -173,10 +169,9 @@ pnpm run start:prod
 
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Ensure all tests pass
-6. Submit a pull request
+3. Add tests for new functionality
+4. Ensure all tests pass
+5. Submit a pull request
 
 ## 📝 License
 
