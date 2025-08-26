@@ -38,7 +38,7 @@ export default function PromptGenPage() {
 
     try {
       // Call the real backend API
-      const API_URL = 'http://localhost:3000';
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000';
       const fullUrl = `${API_URL}/ai/generate-prompt`;
       
       console.log('🌐 Making API request to:', fullUrl);
