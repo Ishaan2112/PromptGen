@@ -7,9 +7,10 @@ async function bootstrap() {
   // Enable CORS for frontend
   app.enableCors({
     origin: [
-      'http://localhost:3000', // Frontend port (if running on 3000)
-      'http://localhost:3001', // Frontend port (if running on 3001)
-      process.env.FRONTEND_URL, // Heroku frontend URL
+      'http://localhost:3001', // Frontend port
+      'http://localhost:3000',
+      'https://prompt-gen-flame.vercel.app', // Your Vercel frontend domain
+      process.env.CORS_ORIGIN // Allow environment variable override
     ].filter(Boolean), // Remove undefined values
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
