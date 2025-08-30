@@ -6,12 +6,7 @@ async function bootstrap() {
   
   // Enable CORS for frontend
   app.enableCors({
-    origin: [
-      'http://localhost:3001', // Frontend port
-      'http://localhost:3000',
-      'https://prompt-gen-delta.vercel.app/', // Your Vercel frontend domain
-      process.env.CORS_ORIGIN // Allow environment variable override
-    ].filter(Boolean), // Remove undefined values
+    origin: true
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
