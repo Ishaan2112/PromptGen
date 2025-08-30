@@ -9,7 +9,7 @@ async function bootstrap() {
     origin: [
       'http://localhost:3001', // Frontend port
       'http://localhost:3000',
-      'https://prompt-gen-flame.vercel.app', // Your Vercel frontend domain
+      'https://prompt-gen-delta.vercel.app/', // Your Vercel frontend domain
       process.env.CORS_ORIGIN // Allow environment variable override
     ].filter(Boolean), // Remove undefined values
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
